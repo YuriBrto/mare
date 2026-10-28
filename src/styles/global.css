@@ -1,0 +1,306 @@
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--anil);
+  color: var(--foam);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Brilho sutil de luz na água no topo da página. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0 0 auto;
+  height: 60vh;
+  background: radial-gradient(60% 80% at 80% -10%, rgb(63 214 192 / 0.14), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+main:focus {
+  outline: none;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 200;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--sun);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ---------- Estrutura ---------- */
+.shell {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.site-footer {
+  margin-top: clamp(3rem, 8vw, 6rem);
+  padding-block: 2rem 6rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.875rem;
+  color: var(--foam-dim);
+}
+
+.site-footer p {
+  max-width: 60ch;
+  margin: 0 0 0.35rem;
+}
+
+.panel {
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.section-title {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.stack {
+  display: grid;
+  gap: 1.75rem;
+}
+
+/* ---------- Páginas internas ---------- */
+.page {
+  padding-top: clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.page--narrow {
+  max-width: 48rem;
+}
+
+.page__intro {
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.page__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 800;
+  font-stretch: 80%;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.page__lead {
+  max-width: 58ch;
+  margin: 1rem 0 0;
+  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  color: var(--foam-dim);
+}
+
+/* ---------- Botões ---------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.6rem 1.5rem;
+  border: 2px solid var(--sun);
+  border-radius: 999px;
+  background: var(--sun);
+  color: var(--ink);
+  font: 700 1rem var(--font-display);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.button--ghost {
+  min-height: 2.6rem;
+  padding: 0.4rem 1.1rem;
+  border-color: var(--line);
+  background: transparent;
+  color: var(--foam);
+}
+
+.button--ghost:hover:not(:disabled) {
+  border-color: var(--sea);
+  color: var(--sea);
+}
+
+/* ---------- Início: tabela de marés ---------- */
+.tide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.tide-table th {
+  padding: 0 0 0.6rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-align: left;
+  color: var(--foam-dim);
+}
+
+.tide-table td {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.tide-table__dot {
+  display: inline-block;
+  width: 0.65rem;
+  height: 0.65rem;
+  margin-right: 0.6rem;
+  border-radius: 50%;
+  background: var(--sea);
+}
+
+.tide-table__row--low .tide-table__dot {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--sun);
+}
+
+.about-beach p {
+  max-width: 60ch;
+  margin: 0 0 0.75rem;
+  font-size: 1.125rem;
+}
+
+.about-beach strong {
+  color: var(--sun);
+}
+
+/* ---------- Vida marinha ---------- */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.toolbar__count {
+  margin: 0;
+  color: var(--foam-dim);
+}
+
+.species-list {
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- Boias ---------- */
+.buoys__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.buoys__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 2rem 2.5rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.buoy {
+  padding-top: 1rem;
+  border-top: 2px solid var(--line);
+  transition: border-color 0.3s ease;
+}
+
+.buoy--done { border-top-color: var(--sea); }
+.buoy--error { border-top-color: var(--reef); }
+
+.buoy__retry {
+  margin-top: 0.75rem;
+}
+
+/* ---------- Movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* O temporizador do toast é informativo e linear; mantemos. */
+  .toast__timer {
+    animation-duration: var(--duration) !important;
+  }
+}

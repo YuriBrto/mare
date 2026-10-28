@@ -1,0 +1,85 @@
+.species {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.species__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.species__scientific {
+  margin: 0.15rem 0 0;
+  font-style: italic;
+  color: var(--foam-dim);
+}
+
+.species__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.6rem 0 0;
+  font-size: 0.8125rem;
+}
+
+.species__meta span {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--surface-strong);
+}
+
+.species__status.is-threatened {
+  background: var(--reef);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.species__depth {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Régua vertical: topo = superfície, base = 60 m. */
+.species__gauge {
+  position: relative;
+  width: 0.6rem;
+  height: 4.5rem;
+  border-radius: 999px;
+  background: linear-gradient(var(--surface-strong), var(--abyss));
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.species__range {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-radius: 999px;
+  background: var(--sea);
+}
+
+.species__depth-text {
+  min-width: 4.5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--foam-dim);
+}
+
+@media (max-width: 640px) {
+  .species {
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+  }
+  .species__action {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}

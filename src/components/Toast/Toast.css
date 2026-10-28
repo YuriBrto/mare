@@ -1,0 +1,126 @@
+.toast-viewport {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+  width: min(24rem, calc(100vw - 2rem));
+  pointer-events: none;
+}
+
+.toast {
+  --tone: var(--sea);
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 0.85rem;
+  width: 100%;
+  padding: 1rem 0.75rem 1.1rem 1rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--abyss);
+  box-shadow: 0 24px 48px -16px rgb(3 8 40 / 0.8);
+  pointer-events: auto;
+  animation: toast-in 0.45s cubic-bezier(0.2, 1.2, 0.4, 1);
+}
+
+.toast--success { --tone: var(--sea); }
+.toast--error { --tone: var(--reef); }
+.toast--info { --tone: var(--sun); }
+
+.toast.is-leaving {
+  animation: toast-out 0.22s ease-in forwards;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(24px) scale(0.96); }
+}
+
+@keyframes toast-out {
+  to { opacity: 0; transform: translateX(40px); }
+}
+
+.toast__icon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--tone);
+  color: var(--ink);
+}
+
+.toast__icon svg,
+.toast__close svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.toast__body p {
+  margin: 0;
+}
+
+.toast__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.toast__message {
+  margin-top: 0.15rem !important;
+  font-size: 0.9375rem;
+  color: var(--foam-dim);
+}
+
+.toast__close {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--foam-dim);
+  cursor: pointer;
+}
+
+.toast__close:hover {
+  background: var(--surface-strong);
+  color: var(--foam);
+}
+
+/* Linha que esvazia mostrando quanto tempo falta. */
+.toast__timer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--tone);
+  transform-origin: left;
+  animation: toast-timer var(--duration) linear forwards;
+}
+
+.toast.is-paused .toast__timer {
+  animation-play-state: paused;
+}
+
+@keyframes toast-timer {
+  to { transform: scaleX(0); }
+}
+
+@media (max-width: 600px) {
+  .toast-viewport {
+    right: 50%;
+    transform: translateX(50%);
+  }
+}

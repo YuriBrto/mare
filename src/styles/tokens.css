@@ -1,0 +1,31 @@
+/*
+ * Tokens de design do Maré.
+ * Paleta inspirada em Salvador: o azul-anil do mar fundo da baía,
+ * o verde-água da maré rasa e o amarelo das fitas do Bonfim.
+ */
+:root {
+  /* Cores */
+  --anil: #14206b;        /* fundo principal */
+  --abyss: #0d1650;       /* superfícies elevadas (menus, toasts) */
+  --surface: rgb(234 246 243 / 0.05);
+  --surface-strong: rgb(234 246 243 / 0.1);
+  --line: rgb(234 246 243 / 0.16);
+  --foam: #eaf6f3;        /* texto principal */
+  --foam-dim: #aab7d6;    /* texto secundário (contraste AA sobre o anil) */
+  --sea: #3fd6c0;         /* água, sucesso */
+  --sea-deep: #1f8f9b;    /* onda de fundo */
+  --sun: #ffc83d;         /* destaque, foco */
+  --reef: #ff7a66;        /* erro, espécies ameaçadas */
+  --ink: #0d1650;         /* texto sobre cores claras */
+
+  /* Tipografia */
+  --font-display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Forma e espaço */
+  --radius-sm: 0.6rem;
+  --radius-md: 1.1rem;
+  --radius-lg: 1.75rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --max-width: 72rem;
+}

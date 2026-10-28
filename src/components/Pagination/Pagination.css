@@ -1,0 +1,81 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pagination__list {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pagination__page,
+.pagination__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 2.75rem;
+  height: 2.75rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--foam);
+  font: 600 1rem var(--font-display);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.pagination__page:hover,
+.pagination__step:hover:not(:disabled) {
+  border-color: var(--sea);
+  color: var(--sea);
+}
+
+/* Página atual: preenchida como uma boia. */
+.pagination__page[aria-current='page'] {
+  border-color: var(--sun);
+  background: var(--sun);
+  color: var(--ink);
+}
+
+.pagination__step:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pagination__step svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pagination__ellipsis {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  color: var(--foam-dim);
+}
+
+@media (max-width: 480px) {
+  .pagination__step-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .pagination__step {
+    padding: 0;
+  }
+}

@@ -1,0 +1,65 @@
+.progress {
+  --tone: var(--sea);
+  width: 100%;
+}
+
+.progress--sun { --tone: var(--sun); }
+.progress--error { --tone: var(--reef); }
+
+.progress__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.progress__label {
+  color: var(--foam);
+}
+
+.progress__value {
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--tone);
+}
+
+.progress__track {
+  position: relative;
+  height: 0.9rem;
+  border-radius: 999px;
+  background: var(--surface-strong);
+  overflow: hidden;
+}
+
+.progress__fill {
+  position: relative;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--tone);
+  transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s ease;
+}
+
+/* A borda da frente do preenchimento ondula como a linha d'água. */
+.progress__fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -6px;
+  width: 12px;
+  height: 100%;
+  background: radial-gradient(circle at 0 50%, var(--tone) 5px, transparent 6px) 0 0 / 12px 7px repeat-y;
+  animation: progress-crest 1.4s linear infinite;
+}
+
+@keyframes progress-crest {
+  to { background-position: 0 7px; }
+}
+
+.progress__hint {
+  margin: 0.45rem 0 0;
+  font-size: 0.875rem;
+  color: var(--foam-dim);
+}
